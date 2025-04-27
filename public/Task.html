@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome To-Do List</title>
+    <link rel="stylesheet" href="./css/task.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      .editBtn{
+        background-color: rgb(0, 102, 255);
+        height: 35px;
+        width: 120px;
+        cursor: pointer;
+        border-radius: 5px;
+        color: white;
+        border: none;
+        font-size: 14px;
+      }
+      .editBtn:hover{
+        background-color: rgba(56, 136, 255, 0.984);
+      }
+      .deleteBtn{
+        background-color :red;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        height: 35px;
+        width: 120px;
+        color: white;
+        border-radius: 5px;
+      }
+      .deleteBtn:hover{
+        background-color: rgb(247, 50, 50);
+      }
+    </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+        <div class="logo"><img src="./Homeimages/studylogo.png" alt="logo"></div>
+        <ul class="nav-links">
+          <li><a href="Home.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="Task.html">To-Do List</a></li>
+          <li><a href="chatgroup.html">Chat</a></li>
+          <li><a href="Notes.html">Assignment</a></li>
+          <li><a href="#" class="logout-btn">Logout</a></li>
+        </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+      <h1>My Awesome To-Do List</h1>
+     
+      <div class="input-section">
+          <label for="taskName">Name:</label>
+          <input type="text" id="taskName" placeholder="Enter Name">
+
+          <label for="assignedTo">Task Name:</label>
+          <input type="text" id="assignedTo" placeholder="Enter TaskName">
+
+          <label for="dueDate">Due Date:</label>
+          <input type="date" id="dueDate">
+
+          <button id="addTaskBtn">Add Task</button>
+      </div>
+
+     <!-- Task Table -->
+<table id="task-table">
+  <thead>
+    <tr>
+      <th>Task Name</th>
+      <th>Assigned To</th>
+      <th>Due Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="task-table-body">
+    <!-- Tasks will be inserted here -->
+  </tbody>
+</table>
+
+      
+      <div id="alertOverlay" class="alert-overlay">
+          <div id="alertBox" class="alert-box">
+              <p id="alertMessage" class="alert-message"></p>
+              <button id="alertOkBtn" class="alert-button">OK</button>
+          </div>
+      </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="box" id="logo-footer">
+        <img src="./Homeimages/studylogo.png" alt="footer-logo"/>
+        <p>Address: Pune, Kothrud, Maharashtra</p>
+        <a href="tel:9512707825">9512707825</a>
+      </div>
+      <div class="box" id="address2">
+        <ul>
+          <li class="link-name">
+            <a href="home.html" class="link-name">Virtual Group</a>
+          </li>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="login.html">Log in</a></li>
+          <li><a href="home.html">Log Out</a></li>
+        </ul>
+      </div>
+     
+      <div class="box" id="address">
+        <ul>
+          <li class="link-name">
+            <a href="home.html" class="link-name">For Students</a>
+          </li>
+          <li><a href="Task.html">To-Do List</a></li>
+          <li><a href="groupchat.html">Group Chat</a></li>
+          <li><a href="Notes.html">Assignment</a></li>
+        </ul>
+      </div>
+      <div class="box" id="subscribe">
+        <h2>Subscribe Us</h2>
+        <hr />
+        <input id="emailInput" type="text" placeholder="Enter your Email" />
+        <button id="subscribeBtn">Subscribe</button>
+        <div class="all-icon">
+          <a href="https://www.google.com" target="_blank" aria-label="Google" id="google" class="font-footer">
+            <i class="fa-brands fa-google"></i>
+          </a>
+          <a href="https://www.facebook.com" target="_blank" aria-label="Facebook" id="facbook" class="font-footer">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn" id="linkdin" class="font-footer">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://www.twitter.com" target="_blank" aria-label="Twitter" id="twitter" class="font-footer">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/todo.js"></script>
+  <script src="./js/subsrcibe.js"></script>
+</body>
+</html>

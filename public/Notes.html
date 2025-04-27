@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Share Notes - View and Edit Files</title>
+  <link rel="stylesheet" href="css/note.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Reset and base styling */
+* {
+  margin: 0px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  margin: 2px;
+}
+
+
+
+
+  /* Overall table styling */
+  #notes-table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    display: none; /* Initially hidden */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* Table headers */
+  #notes-table thead {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  #notes-table th, #notes-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 16px;
+  }
+
+  /* Alternate row colors */
+  #notes-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  #notes-table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+
+  /* Special styling for Download and Delete buttons */
+  .download-btn, .delete-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .download-btn {
+    background-color: #2196F3;
+  }
+
+  .download-btn:hover {
+    background-color: #0b7dda;
+  }
+
+  .delete-btn {
+    background-color: #f44336;
+  }
+
+  .delete-btn:hover {
+    background-color: #da190b;
+  }
+
+
+
+/* Navbar */
+.navbar {
+  background-color: #32be8f; /* soft green */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 60px;
+  width: 60px;
+  box-shadow: 2px 2px 2px black;
+  border-radius: 9px;
+ 
+}
+
+.logo span {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  font-size: 17.5px;
+}
+
+.nav-links a:hover {
+ 
+   
+  color:black;
+}
+
+/* Logout Button */
+.logout-btn {
+  background-color: white;
+  
+  border: none;
+  height:  35px;
+  width: 114px;
+  background-color:red;
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+footer {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  margin: 0px;
+
+  background: #32be8f; /* Dark Gradient Background */
+}
+
+/* Logo Styling */
+#logo-footer {
+  width: 150px;
+}
+
+#logo-footer img {
+  height: 80px;
+  border-radius: 15px;
+  width: 80px;
+  
+  margin-left: 2px;
+}
+.box{
+  margin: 15px;
+}
+.box a{
+  text-decoration: none;
+  color: white;
+font-style: none;
+margin: 10px; 
+}
+.box p{
+  margin: 10px;
+  color: white;
+}
+
+#blog-home{
+  border: 2px solid black;
+}
+
+#cart-container{
+  box-shadow: 2px 2px 2px grey;
+}
+
+.div{
+  border: none;
+}
+.container .my-5{
+  border: none;
+}
+
+.pt-5 .mt-5 .container{
+  border: 2px solid black;
+}
+
+/* Footer Content */
+footer .footer-content {
+  width: 99%;
+  height: 250px;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.footer-content .box {
+  height: 220px;
+  width: 370px;
+}
+
+.box ul {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box li {
+  margin: 4px;
+  text-decoration: none;
+}
+
+ul li {
+  text-decoration: none;
+  list-style: none;
+}
+
+ul li a {
+  font-size: 19px;
+  text-decoration: none;
+  color: white;
+}
+
+.link-name {
+  text-decoration: underline;
+}
+
+/* Subscribe Box */
+.subscribe-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+#subscribe h2 {
+  margin-top: 5px;
+  font-size: 22px;
+  color: white;
+  margin-left: 3px;
+}
+
+#subscribe hr {
+  margin: 10px;
+  color: white;
+}
+
+#subscribe input {
+ width: 340px;
+  
+  margin: 5px;
+  margin-left:7px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+#subscribe button {
+  background-color: black; /* Bright Orange Subscribe Button */
+ 
+  width: 340px;
+  
+  margin: 5px;
+  margin-left:7px;
+  margin: 5px;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+/* Footer Address */
+.address {
+  margin: 100px;
+}
+
+/* Footer Links */
+.footer-links {
+  margin-top: 20px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 16px;
+  transition: 0.3s;
+  
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Social Media Icons */
+.social-icons {
+  margin-top: 20px;
+  align-items: center;
+   
+}
+
+/* Social Icons Container */.all-icon {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Social Icon Button Styling */
+.social-icon {
+  display: flex; /* Ensures proper centering */
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  border-radius: 50%;
+
+}
+
+/* Hover effect */
+.social-icon:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.all-icon{
+  margin-right: 40px;
+}
+/* Individual Social Media Colors */
+#google {
+  background-color: #DB4437; /* Google Red */
+  text-decoration: none;
+  color: white;
+  border-radius: 50%;
+}
+
+#facbook {
+  background-color: #4267B2;
+  text-decoration: none;
+  color: white;
+  border-radius: 50%; /* Facebook Blue */
+}
+
+#linkdin {
+  background-color: #0077B5;
+  text-decoration: none;
+  color: white;
+  border-radius: 50%; /* LinkedIn Blue */
+}
+
+#twitter {
+  color: white;
+  background-color: #1DA1F2;
+  text-decoration: none; 
+  border-radius: 50%;/* Twitter Blue */
+}
+
+/* Footer Text */
+.footer-text {
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Icon Styling */
+.fa-brands {
+  display: flex;  /* Ensure proper centering */
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding-top: 15px;
+  width: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+}
+
+
+  </style>
+</head>
+<body><header>
+  <nav class="navbar">
+    <div class="logo"><img src="./Homeimages/studylogo.png" alt="Logo"></div>
+    <ul class="nav-links">
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="about.html">Abouts</a></li>
+      <li><a href="Task.html">To-Do List</a></li>
+      <li><a href="chatgroup.html">Chat</a></li>
+      <li><a href="Notes.html">Assignment</a></li>
+      <li><a href="#" class="logout-btn">Logout</a></li>
+
+    </ul>
+  </nav>
+</header>
+
+<div class="container">
+  <h1>Share Your Notes (Upload Files)</h1>
+
+  <!-- index.html -->
+  <div class="note-form">
+    <form id="upload-form" enctype="multipart/form-data">
+      <input type="text" id="name" name="name" placeholder="Name" required />
+      <input type="text" id="description" name="description" placeholder="Description" required />
+      <input type="date" id="date" name="date" required />
+      <input type="file" id="file-upload" name="file" required />
+  <div class="butoon">
+      <button type="submit">📤  Upload Note</button>
+      <button onclick="showAllNotes()">📂 View Files</button>
+    </div>
+    </form>
+  
+  
+  </div>
+  
+
+<table id="notes-table" border="2" style="display: none; margin-top: 20px;">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Download</th>
+      <th>delete</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script src="note.js"></script>
+
+  
+  </div>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="box" id="logo-footer">
+      <img src="./Homeimages/studylogo.png" alt="Logo">
+      <p>Address :- Pune,Kothrud,Maharastra</p>
+      <a href="">9512707825</a>
+    </div>
+    <div class="box" id="address">
+      <ul>
+        <li class="link-name">
+          <a href="home.html" class="link-name">Virtual Group</a>
+        </li>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="login.html">Log in</a></li>
+        <a href="home.html">Log Out</a></li>
+      </ul>
+    </div>
+
+    <div class="box" id="address">
+      <ul>
+        <li class="link-name">
+          <a href="home.html" class="link-name">For Student</a>
+        </li>
+        <li><a href="Task.html">To-Do-List</a></li>
+        <li><a href="chatgroup.html">Group Chat</a></li>
+        <li><a href="Notes.html">Assignment</a></li>
+      </ul>
+    </div>
+
+    <div class="box" id="subscribe">
+      <h2>Subscribe Us</h2>
+      <hr />
+      <input id="emailInput" type="text" placeholder="Enter your Email" />
+      <button id="subscribeBtn">Subscribe</button>
+      <div class="all-icon">
+        <a href="https://www.google.com" target="_blank" aria-label="Google" id="google" class="font-footer">
+          <i class="fa-brands fa-google"></i>
+        </a>
+        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook" id="facbook" class="font-footer">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn" id="linkdin" class="font-footer">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="https://www.twitter.com" target="_blank" aria-label="Twitter" id="twitter" class="font-footer">
+          <i class="fa-brands fa-twitter"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/note.js"></script>
+<script src="./js/subsrcibe.js"></script>
+</body>
+</html>

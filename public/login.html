@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/signup.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Toastify CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<!-- Toastify JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</head>
+<body>
+
+  <img class="wave" src="images/wave.png" alt="wave background" />
+
+  <div class="container">
+    <div class="img">
+      <img src="images/my.png" alt="login graphic" />
+    </div>
+    <div class="login-content">
+      <div id="logout-message" style="color: green; font-weight: bold;"></div>
+
+      <form id="loginForm">
+        <img src="Homeimages/studylogo.png" class="logo-login" alt="user avatar" />
+        <h2 class="title">Login</h2>
+      
+        <div class="input-div one">
+          <div class="i"><i class="fas fa-user"></i></div>
+          <div>
+            <h5>Email</h5>
+            <input type="email" id="email" class="input" required />
+          </div>
+        </div>
+      
+        <div class="input-div pass">
+          <div class="i"><i class="fas fa-lock"></i></div>
+          <div>
+            <h5>Password</h5>
+            <input type="password" id="password" class="input" required />
+          </div>
+        </div>
+
+        <input type="submit" class="btn" value="Login" />
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Animation for login inputs
+    const inputs = document.querySelectorAll(".input");
+    inputs.forEach((input) => {
+      input.addEventListener("focus", function () {
+        this.parentNode.parentNode.classList.add("focus");
+      });
+      input.addEventListener("blur", function () {
+        if (this.value === "") {
+          this.parentNode.parentNode.classList.remove("focus");
+        }
+      });
+    });
+
+    // ✅ Show logout message if redirected with ?message=logout
+    const params = new URLSearchParams(window.location.search);
+    const message = params.get('message');
+    if (message === 'logout') {
+      document.getElementById('logout-message').textContent = "You are logged out successfully.";
+    }
+  </script>
+
+  <script src="js/login.js"></script>
+</body>
+</html>

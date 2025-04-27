@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Virtual Study Group</title>
+    <link rel="stylesheet" href="css/home.css"/>
+    
+    <style>
+        /* Apply a study-related font family */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+        body {
+            margin: 5px;
+            font-family: 'Open Sans', sans-serif; /* A clean and readable sans-serif */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif; /* A slightly more modern and friendly sans-serif for headings */
+            font-weight: 600; /* Make headings a bit bolder */
+        }
+
+        /* Existing styles */
+        .heding {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .heding h1 {
+            color: #333;
+        }
+
+        .features-row {
+            display: flex;
+            justify-content: space-around;
+            padding: 30px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            height: 650px;
+            margin: 20px auto;
+            max-width: 90%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            height: 500px;
+            width: 28%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            filter: grayscale(60%);
+            transition: filter 0.3s ease;
+        }
+
+        .feature-card:hover img {
+            filter: grayscale(0%);
+        }
+
+        .feature-card h3 {
+            margin-top: 15px;
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #555;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .feature-card a {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #32be8f;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .feature-card a:hover {
+            background-color: #2980b9;
+        }
+
+        /* Style for the study video section */
+        .study-video-section {
+            text-align: center;
+            background-color: #e9ecef; /* Light background for contrast */
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 95%; /* Increased max-width */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 20px; /* Added some padding to the section */
+        }
+
+        .study-video-container {
+            height: auto; /* Set height to auto for responsiveness */
+            width: 95%; /* Increased width */
+            max-width: none; /* Remove max-width to allow larger size */
+            margin: 10px auto; /* Added a small top/bottom margin */
+            border-radius: 6px;
+            overflow: hidden; /* Clip video to the border-radius */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .study-video {
+            display: block; /* Prevent extra space below inline elements */
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            max-height: 700px; /* Optional: set a maximum height if needed */
+        }
+
+        .study-video-section h2 {
+            margin-bottom: 15px;
+            color: #495057;
+        }
+
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo"><img src="./Homeimages/studylogo.png"></div>
+            <ul class="nav-links">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="about.html">Abouts</a></li>
+                <li><a href="Task.html">To-Do List</a></li>
+                <li><a href="chatgroup.html">Chat</a></li>
+                <li><a href="Notes.html">Assignment</a></li>
+                <li><a href="#" class="logout-btn">Logout</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <main class="home-content">
+        <section class="hero">
+            <div class="hero-video-container">
+                <video autoplay loop muted class="hero-video">
+                    <source src="./Homeimages/Foronted.mp4" id="vid"type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="hero-overlay">
+                    <h1 class="animated-text">Welcome to Your Virtual Study Group</h1>
+                    <p class="hero-subtitle">Collaborate, Learn, and Grow Together.</p>
+                    <button class="cta-button"><a href="Notes.html">Explore Groups</a></button>
+                </div>
+            </div>
+        </section>
+        <br>
+        <div class="heding">
+            <h1> What we are providing</h1>
+        </div>
+        <section class="features-row">
+
+            <div class="feature-card">
+                <img src="./Homeimages/assigment.png" alt="To-Do List Icon">
+                <h3>To-Do List</h3>
+                <p>Manage your daily tasks and track your progress. Prioritize your work and stay on top of your study schedule. Set deadlines, mark tasks as complete, and keep a clear overview of what needs to be done. Organize your learning journey effectively and boost your productivity.</p>
+                <a href="Task.html">Open To-Do List</a>
+            </div>
+            <div class="feature-card">
+                <img src="./Homeimages/chat.jpg" alt="Group Chat Icon">
+                <h3>Group Chat</h3>
+                <p>Connect with your study partners in real-time. Share ideas, ask questions, and collaborate effectively. Engage in discussions, help each other understand concepts, and build a supportive learning community. Stay connected and learn together.</p>
+                <a href="chatgroup.html">Go to Chat</a>
+            </div>
+            <div class="feature-card">
+                <img src="./Homeimages/grouop.png" alt="Assignments Icon">
+                <h3>Assignments</h3>
+                <p>Stay organized with your study tasks and deadlines. Access, track, and manage your assignments effortlessly. Keep track of due dates, upload your work, and review feedback. Ensure you never miss a deadline and stay on track with your coursework.</p>
+                <a href="Notes.html">View Assignments</a>
+            </div>
+
+        </section>
+        <section class="study-video-section">
+            <h2>Focus and Learn with Our Study Ambience</h2>
+            <div class="study-video-container">
+                <video autoplay loop muted class="study-video">
+                    <source src="./Homeimages/background.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+    </main>
+
+  
+
+   
+    <footer>
+        <div class="footer-content">
+          <div class="box" id="logo-footer">
+            <img src="./Homeimages/studylogo.png" />
+        
+            <p>Address :- Pune,Kothrud,Maharastra</p>
+             <a href="">9512707825</a>
+          </div>
+          <div class="box" id="address">
+            <ul>
+              <li class="link-name">
+                <a href="home.html" class="link-name">Virtual Group</a>
+              </li>
+              <li><a href="home.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="login.html">Log in</a></li>
+              <a href="home.html">Log Out</a></li>
+            </ul>
+          </div>
+         
+          <div class="box" id="address">
+            <ul>
+              <li class="link-name">
+                <a href="home.html" class="link-name">For Student</a>
+              </li>
+              <li><a href="Task.html">To-Do-List</a></li>
+              <li><a href="chatgroup.html">Group Chat</a></li>
+              <li><a href="Notes.html">Assignment</a></li>
+              
+            </ul>
+          </div>
+          <div class="box" id="subscribe">
+            <h2>Subscribe Us</h2>
+            <hr />
+            <input id="emailInput" type="text" placeholder="Enter your Email" />
+            <button id="subscribeBtn">Subscribe</button>
+            <div class="all-icon">
+              <a
+                href="https://www.google.com"
+                target="_blank"
+                aria-label="Google"
+                id="google"
+                class="font-footer"
+              >
+                <i class="fa-brands fa-google"></i>
+              </a>
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                aria-label="Facebook"
+                id="facbook"
+                class="font-footer"
+              >
+                <i class="fa-brands fa-facebook"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                aria-label="LinkedIn"
+                id="linkdin"
+                class="font-footer"
+              >
+                <i class="fa-brands fa-linkedin"></i>
+              </a>
+              <a
+                href="https://www.twitter.com"
+                target="_blank"
+                aria-label="Twitter"
+                id="twitter"
+                class="font-footer"
+              >
+                <i class="fa-brands fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <script src="./js/subsrcibe.js"></script>
+      <script src="./js/Home.js"></script>
+      
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

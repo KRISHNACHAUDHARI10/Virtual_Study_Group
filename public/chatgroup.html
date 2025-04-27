@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group chat</title>
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <!-- <script defer src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script> -->
+
+    <script defer src="js/client.js"></script>
+    <link rel="stylesheet" href="css/chat.css" />
+  </head>
+
+  <body>
+    <nav>
+      <img class="logo" src="images/logo.png" alt="" />
+    </nav>
+    <div class="container">
+      <div class="message right"></div>
+      <div class="message left"></div>
+    </div>
+
+    <div class="send">
+      <form action="#" id="send-container">
+        <input
+          type="text"
+          placeholder=" Send chat"
+          name="messageInput"
+          id="messageInput"
+        />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <audio id="join-sound" src="images/pop.mp3" preload="auto"></audio>
+  </body>
+</html>
