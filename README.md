@@ -9,7 +9,7 @@ An online collaborative platform for students to study together efficiently. Thi
 - 📝 **To-Do List**
   - Add, view, and manage personal study tasks.
 - 💬 **Group Chat**
-  - Communicate with peers in real-time chat channels.
+  - Communicate with peers in real-time chat channels
 - 📤 **Assignment Upload**
   - Upload and access study materials or assignments.
 
