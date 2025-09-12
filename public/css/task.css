@@ -172,6 +172,7 @@ h1 {
   background-color: #fff;
   border-radius: 8px;
   overflow: hidden;
+  
 }
 
 /* Table Header */
@@ -191,25 +192,27 @@ h1 {
 #task-table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
-
-/* Hover effect */
 #task-table tbody tr:hover {
   background-color: #f1f1f1;
   cursor: pointer;
 }
 
 /* Action buttons */
-.edit-btn, .delete-btn {
+.edit-btn, .delete-btn, .done-btn {
   padding: 6px 12px;
   border: none;
   width: 120px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
   height: 35px;
   border-radius: 4px;
   color: white;
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
-  margin: 0 5px;
+   /* Right margin for spacing between buttons */
+ 
 }
 
 .edit-btn {
@@ -218,6 +221,8 @@ h1 {
 
 .edit-btn:hover {
   background-color: #0b7dda;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .delete-btn {
@@ -226,9 +231,28 @@ h1 {
 
 .delete-btn:hover {
   background-color: #da190b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.done-btn {
+  height: 35px;
+  width: 120px;
+  background-color: rgb(7, 189, 19);
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  font-size:15px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
 
+.done-btn:hover {
+  background-color: #a4d400;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
 /* Style for the alert overlay */
 #alertOverlay {

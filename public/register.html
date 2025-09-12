@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Register</title>
   <link rel="stylesheet" href="css/signup.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- Toastify CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
-<!-- Toastify JS -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
- 
-
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <!--  this is good file-->
+  <!-- Toastify JS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
+
 <body>
   <img class="wave" src="images/wave.png" alt="wave" />
-  <div class="container" >
+  <div class="container">
     <div class="img">
       <img src="images/my.png" alt="side image" />
     </div>
@@ -24,10 +24,11 @@
       <form id="registerForm" class="row g-3 needs-validation">
         <img src="Homeimages/studylogo.png" alt="avatar" />
         <h2 class="title">Register</h2>
+        <h1>this is good page </h1>
 
         <div class="input-div one">
           <div class="i"><i class="fas fa-user"></i></div>
-          
+
           <div><input type="text" name="username" class="input" placeholder="Username" required /></div>
         </div>
 
@@ -43,7 +44,7 @@
 
         <div class="input-div one">
           <div class="i"><i class="fas fa-lock"></i></div>
-          
+
           <div><input type="password" name="password" class="input" placeholder="Password" required /></div>
         </div>
 
@@ -51,7 +52,7 @@
           <div class="i"><i class="fas fa-envelope"></i></div>
           <div><input type="email" name="email" class="input" placeholder="Email" required /></div>
         </div>
-        
+
         <a href="./login.html">Alredy Have Account</a>
         <input type="submit" class="btn" value="Register">
       </form>
@@ -59,7 +60,7 @@
   </div>
   <script>
     const inputs = document.querySelectorAll(".input");
-    
+
 
     function addFocus() {
       this.parentNode.parentNode.classList.add("focus");
@@ -79,4 +80,5 @@
   <script src="js/register.js"></script>
 
 </body>
+
 </html>

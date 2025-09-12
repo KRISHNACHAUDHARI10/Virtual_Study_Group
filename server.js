@@ -6,8 +6,17 @@ const flash = require("connect-flash");
 const cors = require("cors");
 const colors = require("colors");
 require("dotenv").config();
-const http = require("http"); //
+const http = require("http");
 const { Server } = require("socket.io");
+
+// Import Models
+const Task = require("./models/Task");
+
+// Import Routes
+const authRoutes = require("./routes/auth");
+const taskRoutes = require("./routes/taskRoutes");
+const noteRoutes = require("./routes/noteRoutes");
+const subscribeRoutes = require("./routes/subscribe");
 
 const app = express();
 
@@ -21,8 +30,7 @@ const io = new Server(server, {
   },
 });
 
-//  Chat Socket.IO Logic
-
+// Chat Socket.IO Logic
 const users = {};
 
 io.on("connection", (socket) => {
@@ -30,7 +38,7 @@ io.on("connection", (socket) => {
   socket.on("new-user-joined", (name) => {
     console.log("New User:", name);
     users[socket.id] = name;
-    socket.broadcast.emit("user-joined", name); // Broadcast to all other users
+    socket.broadcast.emit("user-joined", name);
   });
 
   // Handle message sending
@@ -49,14 +57,7 @@ io.on("connection", (socket) => {
   });
 });
 
-// Express Middlewares and Routes
-
-// Import Routes
-const authRoutes = require("./routes/auth");
-const taskRoutes = require("./routes/taskRoutes");
-const noteRoutes = require("./routes/noteRoutes");
-
-// Middleware setup
+// Express Middleware Setup
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -83,9 +84,10 @@ mongoose
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // API Routes
+app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/notes", noteRoutes);
-app.use("/api/auth", authRoutes);
+app.use("/api/subscribe", subscribeRoutes);
 
 // Static Frontend Routes
 app.get("/", (req, res) => {
@@ -117,9 +119,6 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something went wrong!");
 });
-
-const subscribeRoutes = require("./routes/subscribe");
-app.use("/api/subscribe", subscribeRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

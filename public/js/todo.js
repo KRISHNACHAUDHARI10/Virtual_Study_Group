@@ -39,12 +39,13 @@ addTaskBtn.addEventListener("click", async () => {
     name: taskName,
     assignedTo: assignedTo,
     dueDate: dueDate,
+    status: "pending", // New tasks are always pending by default
   };
 
   try {
     let response;
     if (editingTaskId) {
-      // If in edit mode, update the task using PUT
+      // If in edit mode, update the task
       response = await fetch(`/api/tasks/${editingTaskId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -57,7 +58,7 @@ addTaskBtn.addEventListener("click", async () => {
         showAlert(data.message || "Failed to update task");
       }
     } else {
-      // If not in edit mode, add a new task using POST
+      // Add new task
       response = await fetch("/api/tasks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -71,11 +72,10 @@ addTaskBtn.addEventListener("click", async () => {
       }
     }
 
-    // Clear inputs and reset edit mode
     clearInputs();
-    renderTaskTable(); // Correct function to render tasks
-    editingTaskId = null; // Reset the edit mode
-    addTaskBtn.textContent = "Add Task"; // Reset the button text
+    renderTaskTable();
+    editingTaskId = null;
+    addTaskBtn.textContent = "Add Task";
   } catch (err) {
     console.error(err);
     showAlert("Error saving task");
@@ -92,7 +92,6 @@ function clearInputs() {
 }
 
 // Render task list
-// Fetch and render tasks
 async function renderTaskTable() {
   try {
     const response = await fetch("/api/tasks");
@@ -103,7 +102,7 @@ async function renderTaskTable() {
 
     if (!data.tasks || data.tasks.length === 0) {
       const emptyRow = document.createElement("tr");
-      emptyRow.innerHTML = `<td colspan="4">No tasks found. Add a new task!</td>`;
+      emptyRow.innerHTML = `<td colspan="5">No tasks found. Add a new task!</td>`;
       tableBody.appendChild(emptyRow);
       return;
     }
@@ -113,12 +112,23 @@ async function renderTaskTable() {
 
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td>${task.name}</td>
-        <td>${task.assignedTo}</td>
-        <td>${formattedDate}</td>
+        <td class="${task.status === "done" ? "done-task" : ""}">${
+        task.name
+      }</td>
+        <td class="${task.status === "done" ? "done-task" : ""}">${
+        task.assignedTo
+      }</td>
+        <td class="${
+          task.status === "done" ? "done-task" : ""
+        }">${formattedDate}</td>
         <td>
-          <button class="edit-btn" data-id="${task._id}">📝  Edit</button>
+          <button class="edit-btn" data-id="${task._id}">📝 Edit</button>
           <button class="delete-btn" data-id="${task._id}">🚫 Delete</button>
+          ${
+            task.status !== "done"
+              ? `<button class="done-btn" data-id="${task._id}">✅ Done</button>`
+              : ""
+          }
         </td>
       `;
 
@@ -126,15 +136,10 @@ async function renderTaskTable() {
 
       // Edit button
       row.querySelector(".edit-btn").addEventListener("click", () => {
-        // Fill the top input fields
         taskNameInput.value = task.name;
         assignedToInput.value = task.assignedTo;
         dueDateInput.value = task.dueDate.split("T")[0];
-
-        // Set editing mode
         editingTaskId = task._id;
-
-        // Change button text to Update
         addTaskBtn.textContent = "Update Task";
       });
 
@@ -145,10 +150,40 @@ async function renderTaskTable() {
           renderTaskTable();
         }
       });
+
+      // Done button
+      if (task.status !== "done") {
+        row.querySelector(".done-btn").addEventListener("click", async () => {
+          if (confirm("Mark this task as done?")) {
+            try {
+              // Send PATCH request to mark the task as done
+              const response = await fetch(`/api/tasks/done/${task._id}`, {
+                method: "PATCH", // Using PATCH for marking as done
+                headers: { "Content-Type": "application/json" },
+              });
+
+              const data = await response.json();
+
+              if (data.success) {
+                // Task marked as done successfully, show confirmation message
+                alert("Task marked as done  successfully!");
+
+                // Optionally, re-render the task list or update the UI
+                renderTaskTable();
+              } else {
+                alert("Failed to mark task as done!");
+              }
+            } catch (error) {
+              console.error("Error marking task as done:", error);
+              alert("An error occurred while marking the task as done.");
+            }
+          }
+        });
+      }
     });
   } catch (err) {
     console.error(err);
-    alert("Error loading tasks");
+    showAlert("Error loading tasks");
   }
 }
 

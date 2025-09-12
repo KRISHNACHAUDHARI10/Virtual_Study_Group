@@ -1,28 +1,12 @@
 const mongoose = require("mongoose");
 
-// Task schema definition
 const taskSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Task name is required"],
-  },
-  assignedTo: {
-    type: String,
-    required: [true, "Assigned user is required"],
-  },
-  createdDate: {
-    type: Date,
-    default: Date.now,
-  },
-  dueDate: {
-    type: Date,
-    required: [true, "Due date is required"],
-  },
-  done: {
-    type: Boolean,
-    default: false,
-  },
+  name: { type: String, required: true },
+  assignedTo: { type: String, required: true },
+  dueDate: { type: Date, required: true },
+  done: { type: Boolean, default: false }, // Make sure 'done' is a Boolean
 });
 
-// Creating and exporting the Task model
-module.exports = mongoose.model("Task", taskSchema);
+const Task = mongoose.model("Task", taskSchema);
+module.exports = Task;
+ 
