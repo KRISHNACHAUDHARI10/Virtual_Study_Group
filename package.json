@@ -11,6 +11,7 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
+    "auth": "^1.2.3",
     "bcrypt": "^5.1.1",
     "color": "^5.0.0",
     "colors": "^1.4.0",

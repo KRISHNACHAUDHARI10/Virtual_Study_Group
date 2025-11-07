@@ -7,12 +7,7 @@
   <link rel="stylesheet" href="css/signup.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- Toastify CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
-<!-- Toastify JS -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
- 
-
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <body>
   <img class="wave" src="images/wave.png" alt="wave" />
@@ -27,7 +22,6 @@
 
         <div class="input-div one">
           <div class="i"><i class="fas fa-user"></i></div>
-          
           <div><input type="text" name="username" class="input" placeholder="Username" required /></div>
         </div>
 
@@ -43,7 +37,6 @@
 
         <div class="input-div one">
           <div class="i"><i class="fas fa-lock"></i></div>
-          
           <div><input type="password" name="password" class="input" placeholder="Password" required /></div>
         </div>
 
@@ -52,14 +45,14 @@
           <div><input type="email" name="email" class="input" placeholder="Email" required /></div>
         </div>
         
-        <a href="./login.html">Alredy Have Account</a>
+        <a href="./login.html">Already Have Account</a>
         <input type="submit" class="btn" value="Register">
       </form>
     </div>
   </div>
+
   <script>
     const inputs = document.querySelectorAll(".input");
-    
 
     function addFocus() {
       this.parentNode.parentNode.classList.add("focus");
@@ -76,6 +69,9 @@
       input.addEventListener("blur", removeFocus);
     });
   </script>
+  
+  <!-- Load Toastify BEFORE register.js -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="js/register.js"></script>
 
 </body>
